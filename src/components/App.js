@@ -14,10 +14,12 @@ class App extends React.Component {
     console.log(this.state.words);
   };
 
-  onSearchSubmit = ([terms]) => {
-    console.log(terms[0]);
-    console.log(terms[1]);
-    console.log("Skjer det noe?");
+  onAdjSubmit = (word) => {
+    console.log("Adjektiv: " + word);
+  };
+
+  onNounSubmit = (word) => {
+    console.log("Substantiv: " + word);
   };
 
   render() {
@@ -29,7 +31,9 @@ class App extends React.Component {
         <p>
           Du er en: {this.state.words.adj} {this.state.words.sub}
         </p>
-        <Suggestion onFormSubmit={this.onSearchSubmit} />
+        <Suggestion onFormSubmit={this.onAdjSubmit} wordType="Adjektiv" />
+        <p></p>
+        <Suggestion onFormSubmit={this.onNounSubmit} wordType="Substantiv" />
       </div>
     );
   }

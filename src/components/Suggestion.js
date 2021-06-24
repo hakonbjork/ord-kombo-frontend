@@ -1,42 +1,22 @@
 import React, { useState } from "react";
 
 const Suggestion = (props) => {
-  const [adj, setAdj] = useState("");
-  const [noun, setNoun] = useState("");
+  const [word, setWord] = useState("");
 
-  const onInputChangeAdj = (event) => {
-    setAdj(event.target.value);
-  };
-
-  const onInputChangeSub = (event) => {
-    setNoun(event.target.value);
+  const onInputChange = (event) => {
+    setWord(event.target.value);
   };
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    console.log("form submit");
-
-    props.onFormSubmit([adj, noun]);
+    props.onFormSubmit(word);
   };
 
   return (
     <div>
       <form onSubmit={onFormSubmit}>
-        <label>Adjektiv forslag: </label>
-        <input
-          type="text"
-          value={adj}
-          onChange={onInputChangeAdj}
-          onSubmit={onFormSubmit}
-        />
-        <p></p>
-        <label>Substantiv forslag: </label>
-        <input
-          type="text"
-          value={noun}
-          onChange={onInputChangeSub}
-          onSubmit={onFormSubmit}
-        />
+        <label>{props.wordType} forslag: </label>
+        <input type="text" value={word} onChange={onInputChange} />
       </form>
     </div>
   );
