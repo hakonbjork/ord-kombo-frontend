@@ -1,12 +1,13 @@
 import React from "react";
-import word from "../apis/word";
+import { get, post } from "../apis/word";
 import Suggestion from "./Suggestion";
 
 class App extends React.Component {
+  URL = "http://localhost:8080/";
   state = { words: "" };
 
   getResults = async () => {
-    const response = await word("http://localhost:8080/words");
+    const response = await get(this.URL + "words");
     this.setState({ words: response.data.body });
   };
 
@@ -14,12 +15,16 @@ class App extends React.Component {
     console.log(this.state.words);
   };
 
-  onAdjSubmit = (word) => {
-    console.log("Adjektiv: " + word);
+  onAdjSubmit = (adj) => {
+    post(this.URL + "suggestion", {
+      adj: adj,
+    });
   };
 
-  onNounSubmit = (word) => {
-    console.log("Substantiv: " + word);
+  onNounSubmit = (noun) => {
+    post(this.URL + "suggestion", {
+      sub: noun,
+    });
   };
 
   render() {

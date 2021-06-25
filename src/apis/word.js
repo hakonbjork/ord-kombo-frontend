@@ -1,3 +1,6 @@
 import axios from "axios";
 
-export default axios.get;
+const get = axios.get;
+const post = axios.post;
+
+export { get, post };
